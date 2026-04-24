@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RA 11930 Group Report Hub</title>
+  
+
+  <style>
+    * {
+      font-family: 'Courier New', monospace;
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Courier New', monospace;
+      background: radial-gradient(circle at top, #1c1c1c 0%, #0d0d0d 45%, #000000 100%);
+      color: #e5e5e5;
+      min-height: 100vh;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image: url('https://www.transparenttextures.com/patterns/asfalt-dark.png');
+      opacity: 0.2;
+      pointer-events: none;
+    }
+
+    .glow {
+      position: fixed;
+      width: 400px;
+      height: 400px;
+      border-radius: 50%;
+      background: rgba(255, 0, 0, 0.08);
+      filter: blur(120px);
+      z-index: -1;
+    }
+
+    .glow.one {
+      top: -120px;
+      left: -100px;
+    }
+
+    .glow.two {
+      bottom: -120px;
+      right: -100px;
+    }
+
+    header {
+      padding: 4rem 2rem 3rem;
+      text-align: center;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      background: rgba(0,0,0,0.45);
+      backdrop-filter: blur(8px);
+    }
+
+    header h1 {
+      font-family: 'Courier New', monospace;
+      font-size: 3rem;
+      letter-spacing: 4px;
+      color: #f5f5f5;
+      text-transform: uppercase;
+      text-shadow: 0 0 12px rgba(255, 0, 0, 0.3);
+    }
+
+    header p {
+      margin-top: 1rem;
+      color: #b5b5b5;
+      max-width: 700px;
+      margin-inline: auto;
+      line-height: 1.7;
+    }
+
+    .container {
+      width: min(1200px, 92%);
+      margin: 3rem auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2rem;
+    }
+
+    .card {
+      background: rgba(20,20,20,0.85);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 22px;
+      padding: 1.8rem;
+      box-shadow: 0 0 25px rgba(0,0,0,0.4);
+      transition: transform 0.25s ease, border 0.25s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255,0,0,0.08), transparent 40%);
+      pointer-events: none;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(255, 0, 0, 0.35);
+    }
+
+    .card h2 {
+      margin-bottom: 1rem;
+      font-size: 1.4rem;
+      color: #f3f3f3;
+      text-align: center;
+      border-bottom: 2px solid #8b0000;
+      padding-bottom: 0.7rem;
+      letter-spacing: 1px;
+    }
+
+    textarea,
+    input[type="text"],
+    input[type="file"] {
+      width: 100%;
+      background: #0f0f0f;
+      color: #f0f0f0;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 14px;
+      padding: 1rem;
+      margin-top: 0.7rem;
+      font-size: 0.95rem;
+    }
+
+    textarea {
+      min-height: 220px;
+      resize: vertical;
+    }
+
+    button {
+      margin-top: 1rem;
+      padding: 0.9rem 1.3rem;
+      border: none;
+      border-radius: 14px;
+      background: linear-gradient(135deg, #5c0000, #a30000);
+      color: white;
+      font-weight: 600;
+      cursor: pointer;
+      transition: opacity 0.2s ease;
+    }
+
+    button:hover {
+      opacity: 0.85;
+    }
+
+    .file-list {
+      margin-top: 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
+    }
+
+    .file-item {
+      background: rgba(255,255,255,0.04);
+      padding: 0.9rem;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .case-box {
+      margin-top: 1rem;
+      padding: 1rem;
+      border-radius: 14px;
+      background: rgba(255,255,255,0.03);
+      border-left: 4px solid #7d0000;
+      line-height: 1.7;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      color: #7d7d7d;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      margin-top: 3rem;
+    }
+
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="glow one"></div>
+  <div class="glow two"></div>
+
+  <header>
+    <h1>RA 11930 </h1>
+    <p>
+      Contains notes, a short case digest, and link to submission for today's activity.
+    </p>
+  </header>
+
+  <main class="container">
+
+    <section class="card" style="grid-column: 1 / -1;">
+      <h3>AN ACT PUNISHING ONLINE SEXUAL ABUSE OF EXPLOITATION OF CHILDREN, PENALIZING THE PRODUCTION, DISTRIBUTION, POSSESSION AND ACCESS OF CHILD SEXUAL ABUSE OR EXPLOITATION MATERIALS, AMENDING REPUBLIC ACT NO. 9160, OTHERWISE KNOWN AS THE “ANTI-MONEY LAUNDERING ACT OF 2001”, AS AMENDED AND REPEALING REPUBLIC ACT NO. 977, OTHERWISE KNOWN AS THE “ANTI-CHILD PORNOGRAPHY ACT OF 2009”</h3>
+      <div class="case-box">
+        <p><em>[Enacted on 2022]</em></p>
+      </div>
+    </section>
+
+    <section class="card" style="grid-column: 1 / -1;">
+      <h2>Legislative Policy and Purpose</h2>
+      <div class="case-box">
+        <p>The State recognizes the vital role of the youth in nation-building and shall protect their physical, moral, spiritual, intellectual, emotional, psychological, and social well-being.</p>
+        <br>
+        <p>RA 11930 provides special protection to children from all forms of sexual violence, abuse, and exploitation committed through ICT and other digital means.</p>
+        <br>
+        <p>The law also seeks to guarantee children's rights, comply with international treaties, and ensure safe access to digital technologies.</p>
+      </div>
+    </section>
+
+    <section class="card" style="grid-column: 1 / -1;">
+      <h2>Important Definitions</h2>
+      <div class="case-box">
+        <p><strong>Child:</strong> A person below 18 years old, including persons portrayed as children and computer-generated representations.</p>
+        <br>
+        <p><strong>OSAEC:</strong> Use of ICT to sexually abuse or exploit children.</p>
+        <br>
+        <p><strong>CSAEM/CSAM:</strong> Any material showing a child engaged in real or simulated sexual activity.</p>
+      </div>
+    </section>
+
+    <section class="card" style="grid-column: 1 / -1;">
+      <h2>Acts Punished and Corresponding Penalties</h2>
+      <div class="case-box" style="overflow-x:auto;">
+        <table style="width:100%; border-collapse: collapse; color:#f0f0f0;">
+          <thead>
+            <tr style="background: rgba(139,0,0,0.45);">
+              <th style="padding:1rem; border:1px solid rgba(255,255,255,0.1); text-align:left;">Section</th>
+              <th style="padding:1rem; border:1px solid rgba(255,255,255,0.1); text-align:left;">Punishable Act</th>
+              <th style="padding:1rem; border:1px solid rgba(255,255,255,0.1); text-align:left;">Penalty</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="padding:1rem; border:1px solid rgba(255,255,255,0.08);">Sec. 4 (a)-(j)</td>
+              <td style="padding:1rem; border:1px solid rgba(255,255,255,0.08);">Producing, distributing, facilitating, streaming, trafficking, or exploiting children for CSAEM or OSAEC activities.</td>
+              <td style="padding:1rem; border:1px solid rgba(255,255,255,0.08);">Life imprisonment + fine not less than ₱2,000,000</td>
+            </tr>
+
+            <tr>
+              <td style="padding:1rem; border:1px solid rgba(255,255,255,0.08);">Sec. 4 (k)-(l)</td>
+              <td style="padding:1rem; border:1px solid rgba(255,255,255,0.08);">Knowingly benefiting from or providing venues for prohibited acts.</td>
+              <td style="padding:1rem; border:1px solid rgba(255,255,255,0.08);">Reclusion temporal maximum to reclusion perpetua + ₱1,000,000–₱2,000,000 fine</td>
+            </tr>
+
+            <tr>
+              <td style="padding:1rem; border:1px solid rgba(255,255,255,0.08);">Sec. 4 (m)-(o)</td>
+              <td style="padding:1rem; border:1px solid rgba(255,255,255,0.08);">Grooming, sexualizing children online, and pandering.</td>
+              <td style="padding:1rem; border:1px solid rgba(255,255,255,0.08);">Reclusion temporal maximum + ₱800,000–₱1,000,000 fine</td>
+            </tr>
+
+            <tr>
+              <td style="padding:1rem; border:1px solid rgba(255,255,255,0.08);">Sec. 4 (p)</td>
+              <td style="padding:1rem; border:1px solid rgba(255,255,255,0.08);">Supporting or subscribing to websites hosting CSAEM or OSAEC content.</td>
+              <td style="padding:1rem; border:1px solid rgba(255,255,255,0.08);">Reclusion temporal medium + ₱500,000–₱800,000 fine</td>
+            </tr>
+
+            <tr>
+              <td style="padding:1rem; border:1px solid rgba(255,255,255,0.08);">Sec. 4 (q)</td>
+              <td style="padding:1rem; border:1px solid rgba(255,255,255,0.08);">Advertising or promoting OSAEC and CSAEM materials.</td>
+              <td style="padding:1rem; border:1px solid rgba(255,255,255,0.08);">Reclusion temporal minimum + ₱300,000–₱500,000 fine</td>
+            </tr>
+
+            <tr>
+              <td style="padding:1rem; border:1px solid rgba(255,255,255,0.08);">Sec. 4 (r)</td>
+              <td style="padding:1rem; border:1px solid rgba(255,255,255,0.08);">Possession of CSAEM materials.</td>
+              <td style="padding:1rem; border:1px solid rgba(255,255,255,0.08);">Reclusion temporal + fine not less than ₱300,000</td>
+            </tr>
+
+            <tr>
+              <td style="padding:1rem; border:1px solid rgba(255,255,255,0.08);">Sec. 4 (s)</td>
+              <td style="padding:1rem; border:1px solid rgba(255,255,255,0.08);">Willful access to CSAEM materials.</td>
+              <td style="padding:1rem; border:1px solid rgba(255,255,255,0.08);">Prision mayor maximum + ₱200,000–₱300,000 fine</td>
+            </tr>
+
+            <tr>
+              <td style="padding:1rem; border:1px solid rgba(255,255,255,0.08);">Sec. 4 (t)</td>
+              <td style="padding:1rem; border:1px solid rgba(255,255,255,0.08);">Conspiracy to commit prohibited acts.</td>
+              <td style="padding:1rem; border:1px solid rgba(255,255,255,0.08);">Prision mayor medium + ₱100,000–₱200,000 fine</td>
+            </tr>
+
+            <tr>
+              <td style="padding:1rem; border:1px solid rgba(255,255,255,0.08);">Sec. 6</td>
+              <td style="padding:1rem; border:1px solid rgba(255,255,255,0.08);">Syndicated commission of offenses under RA 11930.</td>
+              <td style="padding:1rem; border:1px solid rgba(255,255,255,0.08);">Life imprisonment + ₱5,000,000–₱20,000,000 fine</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="card" style="grid-column: 1 / -1;">
+      <h2>Relevant Jurisprudence</h2>
+      <div class="case-box">
+        <h3>People v. YYY, G.R. No. 262941 (February 20, 2024)</h3>
+        <br>
+        <p><strong>Facts:</strong> The FBI tracked online child exploitation activities connected to YYY. Philippine authorities conducted surveillance, secured a search warrant, rescued minors, and recovered explicit digital evidence involving a child victim.</p>
+        <br>
+        <p><strong>Issue:</strong> Whether the repeal of RA 9775 by RA 11930 extinguished criminal liability.</p>
+        <br>
+        <p><strong>Ruling:</strong> No. The Supreme Court ruled that RA 11930 reenacted and expanded the prohibited acts under the former law, therefore criminal liability continued despite the repeal.</p>
+      </div>
+    </section>
+
+    <section class="card" style="grid-column: 1 / -1;">
+      <h2>Illustrative Application</h2>
+      <div class="case-box">
+        <p>An adult who emotionally manipulates a minor online and convinces them to send sexual videos may be liable for grooming and producing CSAEM.</p>
+        <br>
+        <p>Possession of three or more CSAEM files is prima facie evidence of intent to distribute or publish the materials.</p>
+        <br>
+        <p>The consent of the child is not a valid defense.</p>
+      </div>
+    </section>
+
+    <section class="card" style="grid-column: 1 / -1;">
+      <h2>Recent Developments</h2>
+      <div class="case-box">
+      <p>
+       The government launched a roadmap against online sexual abuse and exploitation of children focused on:
+      </p>
+
+      <ul style="margin-left: 2.5rem; margin-top: 0.8rem;">
+        <li>Prevention</li>
+        <li>Protection</li>
+        <li>Enforcement</li>
+        <li>International and local partnerships</li>
+      </ul>
+      </div>
+    </section>
+
+    <section class="card" style="grid-column: 1 / -1;">
+      <h2>Activity Submission Portal</h2>
+      <p style="margin-bottom:1rem; color:#bdbdbd; line-height:1.6;">
+        Upload only the final activity answers or submissions.
+      </p>
+
+      <a href="https://forms.gle/YYSVWLKKVBcasoya7" target="_blank">
+      <button>Submit Activity Answer</button>
+      </a>
+
+      <div class="file-list" id="fileList"></div>
+    </section>
+
+  </main>
+
+  <footer>
+    RA 11930 Group 3 Report • 2026
+  </footer>
+
+  <script>
+    function saveNotes() {
+      alert('Notes saved locally.');
+    }
+
+    function addCaseDigest() {
+      const title = document.getElementById('caseTitle').value;
+      const digest = document.getElementById('caseDigest').value;
+      const container = document.getElementById('caseContainer');
+
+      if (!title || !digest) {
+        alert('Please complete the case title and digest fields.');
+        return;
+      }
+
+      const box = document.createElement('div');
+      box.classList.add('case-box');
+
+      box.innerHTML = `
+        <h3>${title}</h3>
+        <p>${digest.replace(/\n/g, '<br>')}</p>
+      `;
+
+      container.prepend(box);
+
+      document.getElementById('caseTitle').value = '';
+      document.getElementById('caseDigest').value = '';
+    }
+
+    function displayFiles() {
+      const input = document.getElementById('fileUpload');
+      const fileList = document.getElementById('fileList');
+
+      if (input.files.length === 0) {
+        alert('No files selected.');
+        return;
+      }
+
+      for (const file of input.files) {
+        const item = document.createElement('div');
+        item.classList.add('file-item');
+        item.textContent = `📁 ${file.name}`;
+        fileList.prepend(item);
+      }
+
+      input.value = '';
+    }
+  </script>
+
+</body>
+</html>
